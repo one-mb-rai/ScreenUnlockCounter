@@ -6,6 +6,7 @@ import android.content.Intent
 import android.util.Log
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
+import androidx.glance.appwidget.updateAll
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -15,16 +16,13 @@ class ScreenUnlockCounterReceiver: GlanceAppWidgetReceiver() {
     override val glanceAppWidget: GlanceAppWidget
         get() = ScreenUnlockCounterWidget()
 
-    override fun onRestored(context: Context?, oldWidgetIds: IntArray?, newWidgetIds: IntArray?) {
-        super.onRestored(context, oldWidgetIds, newWidgetIds)
-    }
-
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
         context.let {
             CoroutineScope(Dispatchers.Default).launch {
                 ScreenUnlockCounterWidget().updateCounter(it)
+                ScreenUnlockCounterWidget().updateAll(context);
             }
         }
     }
