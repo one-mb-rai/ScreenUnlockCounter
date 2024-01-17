@@ -27,7 +27,7 @@
         </activity>
 
         <receiver
-            android:name=".ScreenUnlockCounterReceiver"
+            android:name=".widgets.ScreenUnlockCounterReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -42,7 +42,7 @@
                 android:resource="@xml/screen_unlock_counter_info" />
         </receiver>
         <service
-            android:name=".ScreenUnlockService"
+            android:name=".widgets.ScreenUnlockService"
             android:enabled="true"
             android:foregroundServiceType="dataSync|location|mediaPlayback"
             android:exported="false" />
