@@ -92,13 +92,6 @@ class ScreenUnlockCounterWidget: GlanceAppWidget() {
         val weekArray = arrayOf("SA", "SU", "M", "TU", "W", "TH", "F");
         val dayOfWeek = weekArray[calendarIndex]
 
-        val currentDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        val database = AppDatabase.getInstance(context)
-        val counterDao = database.screenUnlockCounterDao()
-
-        val existingCounter = withContext(Dispatchers.IO) {
-            counterDao.getCounterByDate(currentDate)
-        }
         provideContent {
             GlanceTheme {
                 val data by store.data.collectAsState(initial);
