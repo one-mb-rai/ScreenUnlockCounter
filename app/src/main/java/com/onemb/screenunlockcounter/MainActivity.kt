@@ -1,3 +1,7 @@
+/**
+ * MainActivity is the entry point of the Android application. It sets up the UI using Compose
+ * and initiates the ScreenUnlockService to monitor screen unlock events.
+ */
 package com.onemb.screenunlockcounter
 
 import android.content.Intent
@@ -17,7 +21,16 @@ import androidx.core.content.ContextCompat
 import com.onemb.screenunlockcounter.ui.theme.ScreenUnlockCounterTheme
 import android.Manifest
 
+/**
+ * MainActivity is the entry point of the Android application. It sets up the UI using Compose
+ * and initiates the ScreenUnlockService to monitor screen unlock events.
+ */
 class MainActivity : ComponentActivity() {
+
+    /**
+     * Called when the activity is created. Sets up the UI using Compose and initiates
+     * the ScreenUnlockService to monitor screen unlock events.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -28,16 +41,17 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-
-        // Working functionality
+        // Check and request notification permission
         if (checkPermission()) {
             startService(Intent(this, ScreenUnlockService::class.java))
         } else {
             requestPermission()
         }
-        // Working functionality
     }
 
+    /**
+     * Checks if the app has the necessary notification permission.
+     */
     private fun checkPermission(): Boolean {
         return ContextCompat.checkSelfPermission(
             this,
@@ -45,6 +59,9 @@ class MainActivity : ComponentActivity() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
+    /**
+     * Requests notification permission from the user.
+     */
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
             this,
@@ -53,6 +70,9 @@ class MainActivity : ComponentActivity() {
         )
     }
 
+    /**
+     * Handles the result of the permission request.
+     */
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -70,14 +90,18 @@ class MainActivity : ComponentActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    /**
+     * Starts the ScreenUnlockService.
+     */
     private fun startScreenUnlockService() {
         val serviceIntent = Intent(this, ScreenUnlockService::class.java)
         startService(serviceIntent)
     }
-
 }
 
-
+/**
+ * Greeting is a Compose function displaying a greeting text.
+ */
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
@@ -86,6 +110,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
     )
 }
 
+/**
+ * Preview function for Greeting Compose component.
+ */
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
