@@ -27,12 +27,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+
+        // Working functionality
         if (checkPermission()) {
             startService(Intent(this, ScreenUnlockService::class.java))
         } else {
             requestPermission()
         }
-
+        // Working functionality
     }
 
     private fun checkPermission(): Boolean {

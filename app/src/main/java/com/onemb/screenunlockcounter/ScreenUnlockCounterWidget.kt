@@ -3,6 +3,7 @@ package com.onemb.screenunlockcounter
 import android.content.Context
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -10,8 +11,11 @@ import androidx.datastore.preferences.preferencesDataStore
 import androidx.glance.ExperimentalGlanceApi
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
+import androidx.glance.GlanceTheme
 import androidx.glance.appwidget.GlanceAppWidget
+import androidx.glance.appwidget.appWidgetBackground
 import androidx.glance.appwidget.provideContent
+import androidx.glance.background
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
 import androidx.glance.layout.fillMaxSize
@@ -38,15 +42,17 @@ class ScreenUnlockCounterWidget: GlanceAppWidget() {
         val initial = store.data.first()
         provideContent {
             val data by store.data.collectAsState(initial)
-            Column(
-                modifier = GlanceModifier.fillMaxSize(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Column {
-                    Text(
-                        text = "Screen Unlocks ${data[CounterIndex] ?: 0}"
-                    )
+            GlanceTheme (GlanceTheme.colors){
+                Column(
+                    modifier = GlanceModifier.fillMaxSize(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Column {
+                        Text(
+                            text = "Screen Unlocks ${data[CounterIndex] ?: 0}"
+                        )
+                    }
                 }
             }
         }
