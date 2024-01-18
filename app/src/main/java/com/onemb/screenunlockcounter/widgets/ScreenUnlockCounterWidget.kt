@@ -46,6 +46,7 @@ import java.util.Locale
  * ScreenUnlockCounterWidget is a GlanceAppWidget that displays the screen unlock counter.
  * It updates the counter on screen unlock events and provides a Glance theme for widget appearance.
  */
+@Suppress("PrivatePropertyName", "SpellCheckingInspection")
 class ScreenUnlockCounterWidget: GlanceAppWidget() {
 
     private val CounterIndex = stringPreferencesKey("counter")
@@ -71,7 +72,7 @@ class ScreenUnlockCounterWidget: GlanceAppWidget() {
             if (existingCounter == null) {
                 val newCounter = ScreenUnlockCounter(date = currentDate, counter = 1)
                 counterDao.insert(newCounter)
-                updatelocalStore(newCounter.toString())
+                updatelocalStore(newCounter.counter.toString())
             } else {
                 val updatedCounterValue = existingCounter.counter + 1
                 counterDao.updateCounter(currentDate, updatedCounterValue)

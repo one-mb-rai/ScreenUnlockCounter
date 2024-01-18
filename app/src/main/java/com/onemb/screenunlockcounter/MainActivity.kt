@@ -211,6 +211,7 @@ fun MonthSelector(currentMonth: YearMonth, onMonthChange: (YearMonth) -> Unit) {
     }
 }
 
+@OptIn(ExperimentalStdlibApi::class)
 @Composable
 fun CalendarGrid(currentMonth: YearMonth, selectedDate: LocalDate, onDateSelected: (LocalDate) -> Unit) {
     val daysOfWeek = DayOfWeek.entries.toTypedArray()
