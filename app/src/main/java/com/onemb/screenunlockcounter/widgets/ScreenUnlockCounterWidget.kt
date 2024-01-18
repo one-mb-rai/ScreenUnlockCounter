@@ -5,6 +5,7 @@
 package com.onemb.screenunlockcounter.widgets
 
 import android.content.Context
+import android.content.Intent
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
@@ -17,6 +18,7 @@ import androidx.glance.ExperimentalGlanceApi
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
+import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
@@ -31,6 +33,7 @@ import androidx.glance.layout.padding
 import androidx.glance.text.Text
 import com.onemb.screenunlockcounter.DB.AppDatabase
 import com.onemb.screenunlockcounter.DB.ScreenUnlockCounter
+import com.onemb.screenunlockcounter.MainActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
@@ -76,8 +79,6 @@ class ScreenUnlockCounterWidget: GlanceAppWidget() {
             }
 
         }
-
-
     }
 
     /**
@@ -96,7 +97,11 @@ class ScreenUnlockCounterWidget: GlanceAppWidget() {
             GlanceTheme {
                 val data by store.data.collectAsState(initial);
                 Column(
-                    modifier = GlanceModifier.fillMaxSize().background(Color.White),
+                    modifier = GlanceModifier.fillMaxSize().background(Color.White).clickable {
+                        val intent = Intent(context, MainActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        }
+                        context.startActivity(intent)},
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {

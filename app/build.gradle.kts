@@ -75,4 +75,8 @@ dependencies {
     implementation ("androidx.room:room-runtime:2.4.0")
     kapt ("androidx.room:room-compiler:2.4.0")
     implementation ("androidx.room:room-ktx:2.4.0")
+    implementation ("com.jakewharton.threetenabp:threetenabp:1.3.0")
+    implementation ("androidx.compose.ui:ui:1.0.0")
+    implementation ("androidx.compose.material:material:1.0.0")
+    implementation ("androidx.activity:activity-compose:1.3.1")
 }
