@@ -14,7 +14,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import androidx.glance.ExperimentalGlanceApi
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
@@ -86,17 +85,16 @@ class ScreenUnlockCounterWidget: GlanceAppWidget() {
      * Provides the Glance content for the widget.
      * Displays the screen unlock counter using GlanceTheme and Compose components.
      */
-    @OptIn(ExperimentalGlanceApi::class)
     override suspend fun provideGlance(context: Context, id: GlanceId) {
-        val store = AppWidgetDataStore.getInstance(context);
-        val initial = store.data.first();
-        val calendarIndex = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-        val weekArray = arrayOf("SA", "SU", "M", "TU", "W", "TH", "F");
+        val store = AppWidgetDataStore.getInstance(context)
+        val initial = store.data.first()
+        val calendarIndex = Calendar.getInstance().get(Calendar.DAY_OF_WEEK)
+        val weekArray = arrayOf("SA", "SU", "M", "TU", "W", "TH", "F")
         val dayOfWeek = weekArray[calendarIndex]
 
         provideContent {
             GlanceTheme {
-                val data by store.data.collectAsState(initial);
+                val data by store.data.collectAsState(initial)
                 Column(
                     modifier = GlanceModifier.fillMaxSize().background(Color.White).clickable {
                         val intent = Intent(context, MainActivity::class.java).apply {
@@ -112,7 +110,7 @@ class ScreenUnlockCounterWidget: GlanceAppWidget() {
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = GlanceModifier.fillMaxWidth()
                         ) {
-                            val modifier = GlanceModifier.defaultWeight().padding(start = 16.dp)
+                            val modifier = GlanceModifier.defaultWeight().padding(start = 16.dp, end= 16.dp)
                             for (item in weekArray) {
                                 if(item == dayOfWeek) {
                                     val modifierActive = GlanceModifier.
