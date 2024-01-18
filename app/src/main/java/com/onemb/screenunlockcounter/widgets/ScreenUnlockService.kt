@@ -2,10 +2,9 @@
  * ScreenUnlockService is an Android service that runs in the foreground,
  * monitors screen unlock events, and displays a notification.
  */
-package com.onemb.screenunlockcounter
+package com.onemb.screenunlockcounter.widgets
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -18,6 +17,8 @@ import android.os.IBinder
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.onemb.screenunlockcounter.MainActivity
+import com.onemb.screenunlockcounter.R
 
 /**
  * ScreenUnlockService is an Android service that runs in the foreground,

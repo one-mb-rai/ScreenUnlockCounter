@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.onemb.screenunlockcounter.ui.theme.ScreenUnlockCounterTheme
 import android.Manifest
+import com.onemb.screenunlockcounter.widgets.ScreenUnlockService
 
 /**
  * MainActivity is the entry point of the Android application. It sets up the UI using Compose
