@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
 
     <application
         android:allowBackup="true"
@@ -13,12 +15,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ScreenUnlockCounter"
-        tools:targetApi="31" >
+        android:theme="@style/Theme.ScreenUnlockCounter">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.ScreenUnlockCounter" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,7 +44,8 @@
         <service
             android:name=".widgets.ScreenUnlockService"
             android:enabled="true"
-            android:foregroundServiceType="dataSync|location|mediaPlayback"
+            android:foregroundServiceType="dataSync"
+            android:stopWithTask="false"
             android:exported="false" />
     </application>
 
