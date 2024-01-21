@@ -54,5 +54,7 @@ Contributions are welcome! Feel free to open issues, create pull requests, or su
 
 
 # Look at the counter increasing on home screen on each unlock
-https://github.com/one-mb-rai/ScreenUnlockCounter/assets/16004196/ad27eb7c-bf8d-43bc-a30e-fcb6a454e6de
+https://github.com/one-mb-rai/ScreenUnlockCounter/assets/16004196/34610721-121f-491b-af90-ae9365dbb6d1
+
+
 
