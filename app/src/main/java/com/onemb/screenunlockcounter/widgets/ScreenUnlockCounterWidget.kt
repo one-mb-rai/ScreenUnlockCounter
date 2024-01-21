@@ -9,6 +9,8 @@ import android.content.Intent
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -30,6 +32,8 @@ import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.padding
 import androidx.glance.text.Text
+import androidx.glance.text.TextStyle
+import androidx.glance.unit.ColorProvider
 import com.onemb.screenunlockcounter.DB.AppDatabase
 import com.onemb.screenunlockcounter.DB.ScreenUnlockCounter
 import com.onemb.screenunlockcounter.MainActivity
@@ -104,48 +108,63 @@ class ScreenUnlockCounterWidget: GlanceAppWidget() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Column {
+                    Column(modifier = GlanceModifier.padding(all = 16.dp).fillMaxSize()) {
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = GlanceModifier.fillMaxWidth()
                         ) {
-                            val modifier = GlanceModifier.defaultWeight().padding(start = 16.dp, end= 16.dp)
+                            val modifier = GlanceModifier.defaultWeight()
                             for (item in weekArray) {
                                 if(item == dayOfWeek) {
                                     val modifierActive = GlanceModifier.
-                                    defaultWeight().cornerRadius(10.dp)
-                                        .background(Color.Red)
+                                    defaultWeight()
                                     Box(
                                         contentAlignment = Alignment.Center,
                                         modifier = modifierActive,
                                     ) {
-                                        Text(text = item)
+                                        Text(
+                                            text = item,
+                                            style = TextStyle(
+                                                color = ColorProvider(Color.Red)
+                                            )
+                                        )
                                     }
                                 } else {
-                                    Box(modifier) {
+                                    Box(
+                                        contentAlignment = Alignment.Center,
+                                        modifier = modifier
+                                    ) {
                                         Text(text = item)
                                     }
                                 }
                             }
                         }
                         Row(
-                            verticalAlignment = Alignment.CenterVertically,
+                            verticalAlignment = Alignment.Bottom,
                             horizontalAlignment = Alignment.Start,
-                            modifier = GlanceModifier.fillMaxSize().defaultWeight().padding(start = 16.dp)
+                            modifier = GlanceModifier.fillMaxSize().padding(start = 10.dp)
                         ) {
                             Box(
                                 contentAlignment = Alignment.CenterStart
                             ) {
                                 Text(
-                                    text = "Screen Unlocks: "
+                                    text = "Screen Unlocks: ",
+                                    style = TextStyle(
+                                        color = ColorProvider(Color.Black),
+                                        fontSize = TextUnit(24F, TextUnitType.Sp)
+                                    )
                                 )
                             }
                             Box(
                                 contentAlignment = Alignment.CenterEnd
                             ) {
                                 Text(
-                                    text = "${data[CounterIndex] ?: 0}"
+                                    text = "${data[CounterIndex] ?: 0}",
+                                    style = TextStyle(
+                                        color = ColorProvider(Color.Red),
+                                        fontSize = TextUnit(24F, TextUnitType.Sp)
+                                    )
                                 )
                             }
                         }
